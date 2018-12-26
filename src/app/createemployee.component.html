@@ -1,13 +1,16 @@
-<form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm)">
+<form #employeeForm="ngForm" ngNativeValidate (ngSubmit)="saveEmployee(employeeForm)">
 <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">Create Employee</h3>
       </div>
       <div class="panel-body">
-        <div class ="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" name="fn" [(ngModel)]="name"id="name" class="form-control">
-      </div>
+        <div class ="form-group" [class.has-error]="fullNameControl.invalid">
+          <label for="name" class="control-label" >Full Name</label>
+          <input required type="text" name="fn" [(ngModel)]="name"id="name" class="form-control" #fullNameControl="ngModel">
+  <span class="help-block" *ngIf="fullNameControl.invalid">
+    Full Name required
+  </span>
+        </div>
       <div class ="form-group">
           <label for="email">Email</label>
           <input type="text" name="e" [(ngModel)]="email" id="email" class="form-control">
@@ -69,7 +72,18 @@
       <input type="text" bsDatepicker [bsConfig]="DatepickerConfig" name="DateofBirth" placement="top" [(ngModel)]="DateofBirth" id="DateofBirth" class="form-control">
     </div>
   </div>
+  <div class ="form-group">
+    <label for="PhotoPath">Photo Path </label>
+    <input type="text" name="PhotoPath" [(ngModel)]="PhotoPath" id="PhotoPath" class="form-control">
 
+</div>
+<div class ="form-group">
+<img  [src]="PhotoPath" *ngIf="photoPreview"/>
+</div>
+
+<div class="form-group">
+  <button (click)="togglePreview()" class="btn-primary">{{photoPreview? "Hide ":"Show "}} Preview</button>
+    </div>
   </div>
       <div class="panel-footer">
         <button  type="submit" class="btn btn-primary">save </button>

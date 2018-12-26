@@ -10,6 +10,7 @@ import { container } from '@angular/core/src/render3';
 })
 export class CreateemployeeComponent implements OnInit {
   dateofbirth: Date = new Date(2018, 0, 30);
+  photoPreview  = false;
   DatepickerConfig: Partial<BsDatepickerConfig>;
 department: Department [] = [
   {id: 1, name: 'IT'},
@@ -20,6 +21,9 @@ department: Department [] = [
   constructor() {
   // tslint:disable-next-line:max-line-length
   this.DatepickerConfig = Object.assign({}, {containerClass: 'theme-dark-blue', showWeekNumbers: true, minDate: new Date(2018, 11, 31), maxDate: new Date(2018, 12, 2) , dateInputFormat: 'DD/MM/YYYY'});
+  }
+  togglePreview() {
+    this.photoPreview = !this.photoPreview;
   }
   ngOnInit() {
   }
