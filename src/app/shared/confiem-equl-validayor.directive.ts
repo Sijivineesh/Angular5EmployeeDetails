@@ -10,6 +10,18 @@ import { Validator, NG_VALIDATORS, AbstractControl } from '@angular/forms';
 
 })
 export class ConfirmEqualValidator implements Validator {
+        validate (passwordGroup: AbstractControl): {[key: string]: any}| null {
+       const controlcomparepassword  = passwordGroup.get('password');
+       const controlcompareconfirmpassword = passwordGroup.get('confirmpassword');
+       // tslint:disable-next-line:max-line-length
+       if (controlcomparepassword && controlcompareconfirmpassword && controlcomparepassword.value !== controlcompareconfirmpassword.value) {
+           return {'notEqual' : true};
+       }
+       return null;
+    }
+    }
+ // Another way
+ /* export class ConfirmEqualValidator implements Validator {
 @Input() appConfirmValidator: string;
 validate (control: AbstractControl): {[key: string]: any}| null {
    const controlcompare  = control.parent.get(this.appConfirmValidator);
@@ -19,4 +31,5 @@ validate (control: AbstractControl): {[key: string]: any}| null {
    return null;
 }
 }
+*/
 

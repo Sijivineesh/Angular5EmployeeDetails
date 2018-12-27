@@ -111,10 +111,31 @@
 <div class="form-group">
   <button (click)="togglePreview()" class="btn-primary">{{photoPreview? "Hide ":"Show "}} Preview</button>
     </div>
-
+<div ngModelGroup="passwordGroup" appConfirmValidator #passwordGroup="ngModelGroup" [class.has-error]="passwordGroup.errors?.notEqual  && !confirmpassword.errors?.required">
     <div class ="form-group" [class.has-error]="password.invalid && password.touched" >
       <label for="password" class="control-label">password</label>
-      <input type="text"  required name="password" [(ngModel)]="employee.password" id="password" #password=ngModel class="form-control">
+      <input type="text" required name="password" [(ngModel)]="employee.password" id="password" #password=ngModel class="form-control">
+      <span class="help-block" *ngIf="password.errors?.required && password.touched">
+        password  is required
+        </span> 
+  </div>
+  <div class ="form-group" [class.has-error]="confirmpassword.invalid && confirmpassword.touched" >
+    <label for="confirmpassword" class="control-label">confirmpassword</label>
+    <input type="text" required   name="confirmpassword" [(ngModel)]="employee.confirmpassword" id="confirmpassword" #confirmpassword=ngModel class="form-control">
+    <span class="help-block" *ngIf="confirmpassword.errors?.required && confirmpassword.touched">
+      confirm password  is required
+      </span> 
+      <span class="help-block" *ngIf="passwordGroup.errors?.notEqual && confirmpassword.touched && !confirmpassword.errors?.required  ">
+        confirm password  and password should be equal
+        </span> 
+</div>
+</div>
+<!--Another way for password checking
+
+<div ngModelGroup="passwordGroup"  [class.has-error]="confirmpassword.invalid && confirmpassword.touched && !confirmpassword.errors?.required">
+    <div class ="form-group" [class.has-error]="password.invalid && password.touched" >
+      <label for="password" class="control-label">password</label>
+      <input type="text" (input)="confirmpassword.control.updateValueAndValidity()" required name="password" [(ngModel)]="employee.password" id="password" #password=ngModel class="form-control">
       <span class="help-block" *ngIf="password.errors?.required && password.touched">
         password  is required
         </span> 
@@ -129,6 +150,9 @@
         confirm password  and password should be equal
         </span> 
 </div>
+</div>
+
+-->
 
 
 
