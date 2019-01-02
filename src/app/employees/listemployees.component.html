@@ -1,60 +1,30 @@
-<div class="panel panel-primary" *ngFor="let employee of employees">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{employee.name}}</h3>
-    </div>
-    <div class="panel-body">
-      <div class="col-xs-10">
-<div clss="row">
-      <div class="col-xs-4">
-        <img class=".imageClass" [src]="employee.photopath"/>
-      </div> 
-    <div class="col-xs-8">
-     <div clss="row">
-      <div class="col-xs-6">
-        Gender
-      </div>
-      <div class="col-xs-6">
-      :{{employee.gender}}
-  
-        </div>
-     </div>
-       <div clss="row">
-          <div class="col-xs-6">
-            Date of birth 
-    
-          </div>
-          <div class="col-xs-6">
-          :{{employee.dateofbirth|date}}
-      
-            </div>
-           </div>
-           <div clss="row">
-              <div class="col-xs-6">
-                name
-        
-              </div>
-              <div class="col-xs-6">
-              :{{employee.name}}
-          
-                </div>
-               </div>
-               <div clss="row">
-                  <div class="col-xs-6">
-                   email
-            
-                  </div>
-                  <div class="col-xs-6">
-                  :{{employee.email}}
-              
-                    </div>
-                   </div>          
-       
-  </div>
-</div>
-</div>
+<!-- data from child to parent
+<h1 *ngIf="dataFromChild">{{dataFromChild?.name+ ' ' + dataFromChild?.gender}}</h1>
+include this noify event in app -display (notify)="handleNotify($event)-->
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="serach by name" style="width: 300px;" [(ngModel)]="serchTerm"> </div>
+<h1 #h1variable>
+</h1>
+
+<div  *ngFor="let employee of employees | EmpFilter: serchTerm">
+  <!--<div (click)="h1variable.innerHTML=childComponent.employee.name+' '+childComponent.employee.gender">-->
+    <!--OR-->
+     <!-- <div (click)="h1variable.innerHTML=childComponent.getempNameandGender()">-->
+    <!--   <div (click)="onClick(employee.id)" class="pointerCursor"> -->
+
+
+  <app-display-employee [employee]="employee" [searchTerm]="searchTerm" ></app-display-employee>
 
 </div>
-</div>
+<!--Display one employee-->
+  <!-- 
+    <button (click)="nextEmployee()" class="btn btn-primary">
+      view next employee
+    </button>
+  from ts page employees
+  <app-display-employee [employee]="employees[0]"></app-display-employee>
+
+   -->
 
 
 

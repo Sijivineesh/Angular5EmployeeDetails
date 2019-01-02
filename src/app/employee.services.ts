@@ -11,33 +11,33 @@ private listemployees: Employee[] = [
     contactpreference: 'Email',
     email: 'l@gmail.com',
     dateofbirth: new Date('10/3/2018'),
-    department: 'IT',
+    department: '3',
     isactive: true,
     photopath: 'assets/images/th (1).jpg',
     password: 'admin',
     confirmpassword: 'admin'
   },
   {
-    id: 1,
+    id: 2,
     name: 'mark',
     gender: 'male',
     contactpreference: 'Email',
     email: 's@gmail.com',
     dateofbirth: new Date('10/3/2018'),
-    department: 'IT',
+    department: '1',
     isactive: true,
     photopath: 'assets/images/th (3).jpg',
     password: 'admin',
     confirmpassword: 'admin'
   },
   {
-    id: 1,
+    id: 3,
     name: 'jacob',
     gender: 'male',
     contactpreference: 'Email',
     email: 'j@gmail.com',
     dateofbirth: new Date('10/3/2018'),
-    department: 'IT',
+    department: '2',
     isactive: true,
     photopath: 'assets/images/th (2).jpg',
     password: 'admin',
@@ -50,4 +50,12 @@ private listemployees: Employee[] = [
 getEmployee(): Employee[] {
     return this.listemployees;
 }
+
+getEmployeeByID(id: number): Employee {
+  return this.listemployees.find(e =>  e.id === id);
+}
+    save(employee: Employee ) {
+      this.listemployees.push(employee);
+    }
+
 }
